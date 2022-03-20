@@ -20,7 +20,7 @@ end)
 dababy:NewToggle("No Clip", "You can walk into walls!", function(s)
     if s then
         game:GetService("RunService").Stepped:Connect(function()
-            game.Players.LocalPlayer.Character.Humanoid.ChangeState(11)
+            game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
         end)
     else
         game:GetService("RunService").Stepped:Disconnect()
