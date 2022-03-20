@@ -10,6 +10,22 @@ end)
 dababy:NewSlider("Jump Power", "Make's Jump Height/Power Higher!", 500, 50, function(s)
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
 end)
+dababy:NewToggle("No Fall Damage", "BRUH ITS IN THE NAME!!!!", function(s)
+    if s then
+        game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
+    else
+        game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+    end
+end)
+dababy:NewToggle("No Clip", "You can walk into walls!", function(s)
+    if s then
+        game:GetService("RunService").Stepped:Connect(function()
+            game.Players.LocalPlayer.Character.Humanoid.ChangeState(11)
+        end)
+    else
+        game:GetService("RunService").Stepped:Disconnect()
+    end
+end)
 local BypassedAudio = Anim:NewSection("Bypassed Audio")
 --enter sound id here
 BypassedAudio:NewTextBox("Play Sound ID", "Enter the sound ID", function(s)
