@@ -15,9 +15,9 @@ dababy:NewSlider("Jump Power", "Make's Jump Height/Power Higher!", 500, 50, func
 end)
 dababy:NewToggle("No Fall Damage", "BRUH ITS IN THE NAME!!!!", function(s)
     if s then
-        game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
+        game.Players.LocalPlayer.Character.Humanoid.NoDamage = true
     else
-        game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+        game.Players.LocalPlayer.Character.Humanoid.NoDamage = false
     end
 end)
 local BypassedAudio = Anim:NewSection("Bypassed Audio")
@@ -27,12 +27,27 @@ BypassedAudio:NewTextBox("Play Sound ID", "Enter the sound ID", function(s)
     local s = Instance.new("Sound")
     s.Name = "RapGod"
     s.SoundId = "http://www.roblox.com/asset/?id=" .. SoundId
-    s.Volume = 50
+    s.Volume = 55
     s.Looped = false
     s.archivable = false
     s.Parent = game.Workspace
-    wait(1)
     s:Play()
+    --if no sound is playing in the next 1 second, say that the sound is not valid
+    wait(1)
+    if s.IsPlaying == false then
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "The given sound id is not valid";
+            Text = "Please enter a valid sound id";,
+            Duration = 3,
+            })
+    end
+    else
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "Started Sound";
+            Text = "Sound ID: " .. SoundId;
+            Duration = 5;
+        })
+    end
 end)    
 --Stop all sounds
 BypassedAudio:NewButton('Stop All Music','Stops all Music', function()
@@ -71,3 +86,4 @@ Teleport:NewTextBox("Teleport To", "Teleports you to a player", function(s)
         })
     end
 end)
+end
